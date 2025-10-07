@@ -8,6 +8,7 @@ const TableRow = styled.div`
   column-gap: 2.4rem;
   align-items: center;
   padding: 1.4rem 2.4rem;
+  
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-100);
@@ -49,7 +50,8 @@ export default function CabinRow({ cabin }) {
       <Cabin>{name}</Cabin>
       <div>Fits up to {maxCapacity} guests</div>
       <Price>{formatCurrency(regularPrice)}</Price>
-      <Discount>{formatCurrency(discount)}</Discount>
+      <Discount>{formatCurrency( discount )}</Discount>
+      <button>Delete</button>
     </TableRow>
   );
 }

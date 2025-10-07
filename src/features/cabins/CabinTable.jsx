@@ -30,8 +30,8 @@ const TableHeader = styled.header`
 
 export default function CabinTable() {
   const {
-    data: cabins,
     isLoading,
+    data: cabins,
     error,
   } = useQuery({
     queryKey: ["cabin"],
@@ -49,7 +49,7 @@ export default function CabinTable() {
         <div>Discount</div>
         <div></div>
       </TableHeader>
-      {cabins.data?.map((cabin) => (
+      {cabins?.map((cabin) => (
         <CabinRow
           cabin={cabin}
           key={cabin.id}
