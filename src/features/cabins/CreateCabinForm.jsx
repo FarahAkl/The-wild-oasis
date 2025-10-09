@@ -53,7 +53,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     if (isEditSession) {
       editCabin({ newCabin: { ...data, image }, id: editId });
     } else {
-      createCabin({ ...data, image:image });
+      createCabin({ newCabin:{...data, image:image} });
     }
   }
 
