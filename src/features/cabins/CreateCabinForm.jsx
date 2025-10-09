@@ -6,7 +6,7 @@ import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CreateEditCabin } from "../../services/apiCabins";
+import { createEditCabin } from "../../services/apiCabins";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
 
@@ -23,7 +23,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const queryClient = useQueryClient();
 
   const { mutate: createCabin, isPending: isCreating } = useMutation({
-    mutationFn: CreateEditCabin,
+    mutationFn: createEditCabin,
     onSuccess: () => {
       toast.success("New cabin successfully created");
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
@@ -35,7 +35,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   });
 
   const { mutate: editCabin, isPending: isEditing } = useMutation({
-    mutationFn: ({ newCabin, id }) => CreateEditCabin(newCabin, id),
+    mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
     onSuccess: () => {
       toast.success("Cabin successfully edited");
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
@@ -51,9 +51,9 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   function onSubmit(data) {
     const image = typeof data.image === "string" ? data.image : data.image[0];
     if (isEditSession) {
-      editCabin({ newCabin: { ...data, image }, id: editId });
+      editCabin({ newCabinData: { ...data, image }, id: editId });
     } else {
-      createCabin({ newCabin:{...data, image:image} });
+      createCabin({ ...data, image });
     }
   }
 
@@ -153,15 +153,17 @@ function CreateCabinForm({ cabinToEdit = {} }) {
       </FormRow>
 
       <FormRow>
-        <Button
-          variation="secondary"
-          type="reset"
-        >
-          Cancel
-        </Button>
-        <Button disabled={isCreating}>
-          {isEditSession ? "Edit Cabin" : "Create New Cabin"}
-        </Button>
+        <div>
+          <Button
+            variation="secondary"
+            type="reset"
+          >
+            Cancel
+          </Button>
+          <Button disabled={isCreating}>
+            {isEditSession ? "Edit Cabin" : "Create New Cabin"}
+          </Button>
+        </div>
       </FormRow>
     </Form>
   );

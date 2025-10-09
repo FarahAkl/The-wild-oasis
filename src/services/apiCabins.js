@@ -2,6 +2,7 @@ import supabase, { supabaseUrl } from "./supabase";
 
 export async function getCabins() {
   const { data, error } = await supabase.from("cabins").select("*");
+
   if (error) {
     console.error(error);
     throw new Error("Cabins could not be loaded");
@@ -9,17 +10,23 @@ export async function getCabins() {
   return data;
 }
 
-export async function CreateEditCabin({ newCabin, id }) {
+export async function createEditCabin(newCabin, id) {
   const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
-  const imageName = `${Math.random()}-${newCabin.image.name}`.replace("/", "");
+  const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll(
+    "/",
+    ""
+  );
   const imagePath = hasImagePath
     ? newCabin.image
     : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
 
-  let query = supabase.from( "cabins" );
-  
-  if (!id) query = query.insert([{ ...newCabin, image: imagePath }]);
-  if (id) query = query.update({ ...newCabin, image: imagePath }).eq("id", id);
+  let query = supabase.from("cabins");
+
+  if (!id || typeof id === "object")
+    query = query.insert([{ ...newCabin, image: imagePath }]);
+
+  if (typeof id !== "object")
+    query = query.update({ ...newCabin, image: imagePath }).eq("id", id);
 
   const { data, error } = await query.select().single();
 
