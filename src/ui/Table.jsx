@@ -96,8 +96,9 @@ function Row({ children }) {
   );
 }
 
-function Body({ children }) {
-  return;
+function Body({ data, render }) {
+  if (data.length === 0) return <Empty>No data to show at the moment</Empty>;
+  return <StyledBody>{data.map(render)}</StyledBody>;
 }
 
 Table.Header = Header;
@@ -116,4 +117,9 @@ Header.propTypes = {
 
 Row.propTypes = {
   children: PropTypes.node,
+};
+
+Body.propTypes = {
+  data: PropTypes.array,
+  render: PropTypes.func,
 };
