@@ -1,6 +1,21 @@
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
 
+export async function getBookings() {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select(
+      "id, created_at, startDate, endDate, numNights, status, totalPrice, numGuests, cabins(name), guests(fullName,email)"
+    );
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings could not be found");
+  }
+
+  return data;
+}
+
 export async function getBooking(id) {
   const { data, error } = await supabase
     .from("bookings")
