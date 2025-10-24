@@ -4,6 +4,7 @@ import Spinner from "../../ui/Spinner";
 import CabinRow from "../cabins/CabinRow";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import Empty from "../../ui/Empty";
 
 export default function CabinTable() {
   const { isPending, cabins } = useCabins();
@@ -26,6 +27,9 @@ export default function CabinTable() {
   const sortedCabins = filteredCabins.sort(
     (a, b) => (a[field] - b[field]) * modifier
   );
+
+    if (!cabins.length) return <Empty resourceName="cabins" />;
+  
 
   return (
     <Menus>
