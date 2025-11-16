@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
@@ -140,22 +139,3 @@ Menus.Menu = Menu;
 Menus.Toggle = Toggle;
 Menus.List = List;
 Menus.Button = Button;
-
-Menus.propTypes = {
-  children: PropTypes.node,
-};
-
-Button.propTypes = {
-  children: PropTypes.node,
-  icon: PropTypes.node,
-  onClick: PropTypes.func,
-};
-
-Toggle.propTypes = {
-  id: PropTypes.any,
-};
-
-List.propTypes = {
-  id: PropTypes.any,
-  children: PropTypes.node,
-};

@@ -7,7 +7,6 @@ import Textarea from "../../ui/Textarea";
 import { useForm } from "react-hook-form";
 import { useCreateCabin } from "./useCreateCabin";
 import { useEditCabin } from "./useEditCabin";
-import PropTypes from "prop-types";
 
 function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
   const { id: editId, ...editValues } = cabinToEdit;
@@ -166,8 +165,3 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 }
 
 export default CreateCabinForm;
-
-CreateCabinForm.propTypes = {
-  cabinToEdit: PropTypes.object,
-  onCloseModal: PropTypes.func,
-};

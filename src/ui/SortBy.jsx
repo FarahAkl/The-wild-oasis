@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import Select from "./Select";
 import { useSearchParams } from "react-router-dom";
 
@@ -18,7 +17,3 @@ export default function SortBy({ options }) {
     />
   );
 }
-
-SortBy.propTypes = {
-  options: PropTypes.array.isRequired,
-};

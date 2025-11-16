@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { formatCurrency } from "../../utils/helpers";
 import { useDeleteCabin } from "./useDeleteCabin";
 import { HiPencil, HiSquare2Stack, HiTrash } from "react-icons/hi2";
@@ -111,16 +110,3 @@ export default function CabinRow({ cabin }) {
     </Table.Row>
   );
 }
-
-CabinRow.propTypes = {
-  cabin: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    created_at: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    maxCapacity: PropTypes.number.isRequired,
-    regularPrice: PropTypes.number.isRequired,
-    discount: PropTypes.number,
-    description: PropTypes.string,
-    image: PropTypes.string,
-  }).isRequired,
-};

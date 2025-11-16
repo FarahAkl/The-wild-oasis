@@ -1,6 +1,5 @@
 import { useSearchParams } from "react-router-dom";
 import styled, { css } from "styled-components";
-import PropTypes from "prop-types";
 
 const StyledFilter = styled.div`
   border: 1px solid var(--color-grey-100);
@@ -59,8 +58,3 @@ export default function Filter({ filterField, options }) {
     </StyledFilter>
   );
 }
-
-Filter.propTypes = {
-  filterField: PropTypes.string.isRequired,
-  options: PropTypes.array,
-};

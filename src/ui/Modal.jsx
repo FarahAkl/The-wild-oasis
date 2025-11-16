@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
 import { createPortal } from "react-dom";
 import { cloneElement, createContext, useContext, useState } from "react";
-import PropTypes from "prop-types";
 import useOutsideClick from "../hooks/useOutsideClick";
 
 const StyledModal = styled.div`
@@ -90,16 +89,6 @@ function Window({ children, name }) {
     document.body
   );
 }
-
-Modal.propTypes = {
-  children: PropTypes.node,
-};
-
-Window.propTypes = {
-  children: PropTypes.node,
-  name: PropTypes.string,
-  onClose: PropTypes.func,
-};
 
 Modal.Open = Open;
 Modal.Window = Window;

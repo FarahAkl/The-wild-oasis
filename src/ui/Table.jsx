@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { createContext, useContext } from "react";
 import styled from "styled-components";
 
@@ -105,21 +104,3 @@ Table.Header = Header;
 Table.Row = Row;
 Table.Body = Body;
 Table.Footer = Footer;
-
-Table.propTypes = {
-  columns: PropTypes.string,
-  children: PropTypes.node,
-};
-
-Header.propTypes = {
-  children: PropTypes.node,
-};
-
-Row.propTypes = {
-  children: PropTypes.node,
-};
-
-Body.propTypes = {
-  data: PropTypes.array,
-  render: PropTypes.func,
-};
