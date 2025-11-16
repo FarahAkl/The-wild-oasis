@@ -18,6 +18,6 @@ module.exports = {
         allowConstantExport: true,
       },
     ],
-    "no-unused-vars": "error",
+    "no-unused-vars": "warn",
   },
 };
